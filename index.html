@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="flipclock/assets/css/flipclock.css">
+    <title>Teste</title>
+</head>
+<body>
+
+    <div class="clock" style="margin: 50px;"></div>
+    
+</body>
+
+<script src="flipclock/assets/js/jquery.js"></script>
+<script src="flipclock/assets/js/flipclock.min.js"></script>
+
+
+<script type="text/javascript">
+
+ var clock;
+
+    $(document).ready(function () {
+
+        // Script GetDates
+        
+        const data_now = () => {
+            var dNow = new Date();
+            var localdate = dNow.getFullYear() + ',' + (dNow.getMonth() + 1) + ',' + dNow.getDate() + ',' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds() ;
+            return localdate = Date.parse(localdate);
+        }
+
+
+
+        const data_end = () => {
+            var dEnd = new Date('2019, 11, 07, 11:59');
+            var localdate = dEnd.getFullYear() + '-' + (dEnd.getMonth() + 1) + '-' + dEnd.getDate();
+            return localdate = Date.parse(localdate);
+        }
+
+        var date_diff = data_end() - data_now();
+
+
+        // Script CountDown FlipClock
+
+        var clock;
+
+        clock = $('.clock').FlipClock(10, {
+            clockFace: 'DailyCounter',
+            autoStart: false,
+            callbacks: {
+                stop: function () {
+                    console.log('Chegou ao fim')
+                }
+            },
+            language: 'pt-br'
+        });
+
+        clock.setCountdown(true);
+        clock.start();
+
+    });
+
+</script>
+
+
+</html>
